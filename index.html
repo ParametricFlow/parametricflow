@@ -99,11 +99,11 @@
 
     /* ─── HERO ─── */
     .hero {
-      min-height: 100vh;
+      height: 520px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      padding: 120px 60px 60px;
+      padding: 80px 60px 60px;
       position: relative;
       overflow: hidden;
     }
@@ -112,10 +112,10 @@
 
     .hero-text h1 {
       font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(36px, 4.5vw, 62px);
+      font-size: clamp(32px, 3.8vw, 54px);
       font-weight: 700;
       line-height: 1.1;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .hero-text h1 .accent-cyan { color: var(--cyan); }
     .hero-text h1 .accent-orange { color: var(--orange); }
@@ -171,12 +171,12 @@
       font-weight: 400;
       letter-spacing: 8px;
       color: var(--white);
-      margin-bottom: 60px;
+      margin-bottom: 40px;
     }
 
     /* ─── QUÉ HACEMOS ─── */
     .services {
-      padding: 80px 60px;
+      padding: 60px 60px 50px;
       background: var(--dark);
     }
 
@@ -184,6 +184,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 0;
+      border-top: 1px solid var(--border);
     }
 
     .service-card {
@@ -219,8 +220,9 @@
     }
 
     /* ─── PILLARS ─── */
+    /* ─── PILLARS ─── */
     .pillars {
-      padding: 0 60px 80px;
+      padding: 0 60px 50px;
       background: var(--dark);
     }
 
@@ -233,9 +235,10 @@
     }
 
     .pillar {
-      padding: 36px 32px;
+      padding: 28px 32px;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 20px;
       border-right: 1px solid rgba(0,212,255,0.12);
       transition: background 0.3s;
@@ -258,7 +261,7 @@
     /* ─── FOOTER ─── */
     footer {
       background: var(--black);
-      padding: 50px 60px 30px;
+      padding: 36px 60px 24px;
       border-top: 1px solid var(--border);
     }
 
@@ -409,7 +412,7 @@
       Automatizamos <span class="accent-cyan">procesos.</span><br>
       Optimizamos <span class="accent-orange">resultados.</span>
     </h1>
-    <p>Ingeniería paramétrica y automatización inteligente para llevar tus proyectos al siguiente nivel.</p>
+    <p>Ingeniería paramétrica y automatización inteligente para llevar tus proyectos al <a href="#">siguiente nivel</a>.</p>
     <div class="hero-line">
       <div class="hero-line-bar"></div>
       <div class="hero-line-dot"></div>
@@ -436,7 +439,7 @@
         <circle cx="32" cy="32" r="4" fill="#00d4ff" opacity="0.8"/>
       </svg>
       <h3>Automatización CAD</h3>
-      <p>Desarrollamos macros y herramientas personalizadas para optimizar procesos de diseño.</p>
+      <p>Desarrollamos macros y herramientas personalizadas en SolidWorks y CATIA para automatizar procesos de diseño y modelado.</p>
     </div>
 
     <!-- Paramétrica -->
@@ -458,7 +461,7 @@
         </g>
       </svg>
       <h3>Generación Paramétrica</h3>
-      <p>Creamos sistemas paramétricos flexibles adaptados a tus necesidades.</p>
+      <p>Creamos sistemas paramétricos que permiten generar múltiples variantes de diseño de forma rápida, flexible y confiable.</p>
     </div>
 
     <!-- A Medida -->
@@ -471,7 +474,7 @@
         <circle cx="36" cy="36" r="3" fill="none" stroke="#ff6b00" stroke-width="1.5"/>
       </svg>
       <h3>Soluciones a Medida</h3>
-      <p>Desarrollamos soluciones personalizadas para mejorar tu flujo de trabajo.</p>
+      <p>Cada proyecto es único. Desarrollamos soluciones adaptadas a tus necesidades específicas y a tu flujo de trabajo.</p>
     </div>
   </div>
 </section>
@@ -527,9 +530,9 @@
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
-  <p class="label" style="font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:4px;color:var(--orange);text-align:center;margin-bottom:28px;">CONTACTO</p>
+  <p class="label" style="font-family:'Orbitron',sans-serif;font-size:13px;letter-spacing:4px;color:var(--orange);text-align:center;margin-bottom:20px;">CONTACTO</p>
 
-  <div class="contact-row" style="display:flex;align-items:center;justify-content:center;gap:40px;margin-bottom:32px;flex-wrap:wrap;">
+  <div class="contact-row" style="display:flex;align-items:center;justify-content:center;gap:36px;margin-bottom:24px;flex-wrap:wrap;">
     <div class="contact-item">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="4" width="20" height="16" rx="2"/>
