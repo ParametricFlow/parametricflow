@@ -631,107 +631,45 @@
 <!-- ═══ WAVE CANVAS ═══ -->
 <script>
   const canvas = document.getElementById('waveCanvas');
-const ctx = canvas.getContext('2d');
+  const ctx    = canvas.getContext('2d');
 
-function resize() {
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-}
-resize();
-window.addEventListener('resize', resize);
-
-let time = 0;
-
-function drawWave(yOffset, amplitude, frequency, color, lineWidth, speed, glow) {
-
-  ctx.beginPath();
-
-  for (let x = 0; x <= canvas.width; x++) {
-
-    const y =
-      yOffset +
-      Math.sin((x * frequency) + time * speed) * amplitude +
-      Math.sin((x * frequency * 0.5) + time * speed * 0.7) * (amplitude * 0.5);
-
-    if (x === 0) {
-      ctx.moveTo(x, y);
-    } else {
-      ctx.lineTo(x, y);
-    }
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
   }
+  resize();
+  window.addEventListener('resize', resize);
 
-  ctx.strokeStyle = color;
-  ctx.lineWidth = lineWidth;
+  const ROWS = 28, COLS = 60;
+  let t = 0;
 
-  ctx.shadowBlur = glow;
-  ctx.shadowColor = color;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const W = canvas.width, H = canvas.height;
+    const cW = W / (COLS - 1), cH = H / (ROWS - 1);
 
-  ctx.stroke();
-}
-
-function animate() {
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  const gradient = ctx.createLinearGradient(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-  gradient.addColorStop(0, 'rgba(0,212,255,0.08)');
-  gradient.addColorStop(1, 'rgba(255,107,0,0.05)');
-
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  drawWave(
-    canvas.height * 0.35,
-    40,
-    0.008,
-    'rgba(0,212,255,0.9)',
-    1.5,
-    1.2,
-    18
-  );
-
-  drawWave(
-    canvas.height * 0.45,
-    55,
-    0.006,
-    'rgba(255,107,0,0.7)',
-    1.2,
-    0.8,
-    14
-  );
-
-  drawWave(
-    canvas.height * 0.55,
-    30,
-    0.010,
-    'rgba(255,255,255,0.18)',
-    1,
-    1.6,
-    10
-  );
-
-  drawWave(
-    canvas.height * 0.65,
-    45,
-    0.005,
-    'rgba(0,212,255,0.35)',
-    1,
-    0.5,
-    12
-  );
-
-  time += 0.01;
-
-  requestAnimationFrame(animate);
-}
-
-animate();
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const xN = c / (COLS - 1);
+        const yN = r / (ROWS - 1);
+        const w1 = Math.sin(xN * 6 - t * 1.2 + yN * 3) * 0.08;
+        const w2 = Math.sin(xN * 4 + t * 0.8 - yN * 2) * 0.06;
+        const px = c * cW;
+        const py = r * cH + (w1 + w2) * H;
+        const rC = Math.round(xN * 255);
+        const gC = Math.round((1 - xN) * 212 + xN * 107);
+        const bC = Math.round((1 - xN) * 255);
+        const a  = 0.25 + 0.45 * (1 - yN) * (0.5 + 0.5 * Math.sin(xN * 8 - t));
+        ctx.beginPath();
+        ctx.arc(px, py, 1.2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rC},${gC},${bC},${a})`;
+        ctx.fill();
+      }
+    }
+    t += 0.012;
+    requestAnimationFrame(draw);
+  }
+  draw();
 </script>
 
 </body>
