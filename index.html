@@ -663,14 +663,14 @@
   resize();
   window.addEventListener('resize', resize);
 
-  const LINES = 26;
+  const LINES = 18;
 let time = 0;
 
 function drawWave(offsetY, amplitude, color, opacity, speedOffset) {
 
   ctx.beginPath();
 
-  for (let x = 0; x <= canvas.width; x++) {
+  for (let x = 0; x <= canvas.width; x += 2) {
 
     const normalizedX = x / canvas.width;
 
@@ -693,7 +693,7 @@ function drawWave(offsetY, amplitude, color, opacity, speedOffset) {
 
   ctx.globalAlpha = opacity;
 
-  ctx.shadowBlur = 6;
+  ctx.shadowBlur = 3;
   ctx.shadowColor = color;
 
   ctx.stroke();
@@ -722,7 +722,7 @@ function animate() {
     );
   }
 
-  time += 0.012;
+  time += 0.008;
 
   requestAnimationFrame(animate);
 }
