@@ -259,7 +259,7 @@
       gap: 14px;
       transition: background 0.3s;
     }
-   
+
     .pillar:hover { background: rgba(0,212,255,0.04); }
 
     .pillar-icon { width: 38px; height: 38px; flex-shrink: 0; }
@@ -661,9 +661,10 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
+let time = 0;
 let time = 180;
 
-function drawWave(offsetY, color, opacity) {
+function drawWave(offsetY, amplitude, frequency, speed, color, width, opacity) {
 
   ctx.beginPath();
 
@@ -671,15 +672,14 @@ function drawWave(offsetY, color, opacity) {
 
     const normalizedX = x / canvas.width;
 
-    if (normalizedX < 0.16) continue;
+    if (normalizedX < 0.18) continue;
 
-    const masterWave =
-      Math.sin((x * 0.006) + time) * 34 +
-      Math.sin((x * 0.0025) + time * 0.5) * 12;
+    const y =
+      offsetY +
+      Math.sin((x * frequency) + time * speed) * amplitude +
+      Math.sin((x * frequency * 0.45) + time * speed * 0.7) * (amplitude * 0.35);
 
-    const y = offsetY + masterWave;
-
-    if (x <= canvas.width * 0.16 + 1) {
+    if (x === Math.floor(canvas.width * 0.18)) {
       ctx.moveTo(x, y);
     } else {
       ctx.lineTo(x, y);
@@ -687,11 +687,11 @@ function drawWave(offsetY, color, opacity) {
   }
 
   ctx.strokeStyle = color;
-  ctx.lineWidth = 1;
+  ctx.lineWidth = width;
 
   ctx.globalAlpha = opacity;
 
-  ctx.shadowBlur = 14;
+  ctx.shadowBlur = 18;
   ctx.shadowColor = color;
 
   ctx.stroke();
@@ -703,17 +703,22 @@ function animate() {
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  for (let i = 0; i < 26; i++) {
+  for (let i = 0; i < 28; i++) {
 
-  drawWave(
-    canvas.height * 0.10 + i * 20,
-    i % 5 === 0
-      ? 'rgba(255,107,0,0.85)'
-      : 'rgba(0,212,255,0.85)',
-    0.03 + i * 0.012
-  );
-}
-  time += 0.003;
+    drawWave(
+      canvas.height * 0.12 + i * 18,
+      18 + i * 1.4,
+      0.009,
+      1 + i * 0.02,
+      i % 4 === 0
+        ? 'rgba(255,107,0,0.95)'
+        : 'rgba(0,212,255,0.95)',
+      1,
+      0.06 + i * 0.012
+    );
+  }
+
+  time += 0.008;
 
   requestAnimationFrame(animate);
 }
