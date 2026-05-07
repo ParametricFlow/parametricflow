@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Parametric Flow – Design Intelligence</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@300;400;600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:        #050a0f;
-      --dark:         #080e14;
-      --cyan:         #00d4ff;
-      --orange:       #ff6b00;
+      --black:  #050a0f;
+      --dark:   #080e14;
+      --cyan:   #00d4ff;
+      --orange: #ff6b00;
       --orange-light: #ff8c3a;
-      --green:        #39d353;
-      --white:        #e8f4f8;
-      --gray:         #8aa0b0;
-      --border:       rgba(0,212,255,0.15);
+      --green:  #39d353;
+      --white:  #e8f4f8;
+      --gray:   #8aa0b0;
+      --border: rgba(0, 212, 255, 0.15);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
+      background-color: var(--black);
       color: var(--white);
       font-family: 'Rajdhani', sans-serif;
+      font-weight: 400;
       overflow-x: hidden;
     }
 
     /* ── NAVBAR ── */
     nav {
       position: fixed;
-      inset: 0 0 auto;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 16px 60px;
-      background: rgba(5,10,15,0.88);
+      background: rgba(5, 10, 15, 0.88);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0,212,255,0.07);
     }
@@ -49,6 +50,7 @@
       gap: 12px;
       text-decoration: none;
     }
+
     .logo-icon { width: 46px; height: 46px; }
 
     .logo-text { display: flex; flex-direction: column; line-height: 1; }
@@ -69,6 +71,7 @@
 
     .nav-links { display: flex; gap: 36px; list-style: none; }
     .nav-links a {
+      font-family: 'Rajdhani', sans-serif;
       font-size: 14px;
       font-weight: 600;
       letter-spacing: 1px;
@@ -79,7 +82,7 @@
       position: relative;
       padding-bottom: 4px;
     }
-    .nav-links a:hover,
+    .nav-links a:hover { color: var(--cyan); }
     .nav-links a.active { color: var(--cyan); }
     .nav-links a.active::after {
       content: '';
@@ -100,15 +103,18 @@
       position: relative;
       overflow: hidden;
     }
+
     .hero-text { z-index: 2; }
+
     .hero-text h1 {
+      font-family: 'Rajdhani', sans-serif;
       font-size: clamp(34px, 4vw, 58px);
       font-weight: 700;
       line-height: 1.1;
       margin-bottom: 16px;
     }
-    .accent-cyan   { color: var(--cyan); }
-    .accent-orange { color: var(--orange); }
+    .hero-text h1 .accent-cyan   { color: var(--cyan); }
+    .hero-text h1 .accent-orange { color: var(--orange); }
 
     .hero-text p {
       font-family: 'Inter', sans-serif;
@@ -131,8 +137,10 @@
       width: 8px; height: 8px;
       border-radius: 50%;
       background: var(--orange);
+      box-shadow: 0 0 12px var(--orange);
     }
 
+    /* Canvas ocupa la mitad derecha del hero */
     .hero-canvas {
       position: absolute;
       top: 0; right: 0;
@@ -150,6 +158,7 @@
 
     .section-title {
       text-align: center;
+      font-family: 'Rajdhani', sans-serif;
       font-size: 16px;
       font-weight: 600;
       letter-spacing: 4px;
@@ -163,6 +172,8 @@
       grid-template-columns: repeat(3, 1fr);
       position: relative;
     }
+
+    /* separadores verticales entre cards */
     .services-grid::before,
     .services-grid::after {
       content: "";
@@ -181,18 +192,19 @@
       align-items: center;
       text-align: center;
       gap: 12px;
-      transition: background 0.3s;
     }
-    .service-card:hover { background: rgba(0,212,255,0.03); }
+    .service-card:hover { background: rgba(0,212,255,0.03); transition: background 0.3s; }
+
     .service-icon { width: 52px; height: 52px; }
 
     .service-card h3 {
+      font-family: 'Rajdhani', sans-serif;
       font-size: 16px;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
     }
-    .service-card:nth-child(1) h3,
+    .service-card:nth-child(1) h3 { color: var(--cyan); }
     .service-card:nth-child(2) h3 { color: var(--cyan); }
     .service-card:nth-child(3) h3 { color: var(--orange); }
 
@@ -206,7 +218,10 @@
     }
 
     /* ── PILLARS ── */
-    .pillars { padding: 0 60px 48px; background: var(--dark); }
+    .pillars {
+      padding: 0 60px 48px;
+      background: var(--dark);
+    }
 
     .pillars-box {
       display: grid;
@@ -224,10 +239,13 @@
       gap: 14px;
       transition: background 0.3s;
     }
+   
     .pillar:hover { background: rgba(0,212,255,0.04); }
+
     .pillar-icon { width: 38px; height: 38px; flex-shrink: 0; }
 
     .pillar span {
+      font-family: 'Rajdhani', sans-serif;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 2px;
@@ -272,7 +290,11 @@
       color: var(--gray);
     }
 
-    .footer-sep { width: 1px; height: 28px; background: var(--border); }
+    .footer-sep {
+      width: 1px;
+      height: 28px;
+      background: var(--border);
+    }
 
     .social-icons { display: flex; align-items: center; gap: 12px; }
 
@@ -289,7 +311,7 @@
     .social-btn:hover { transform: translateY(-2px); opacity: 0.8; }
     .social-btn.li { border-color: var(--cyan); }
     .social-btn.ig { border-color: #e1306c; }
-    .social-btn.yt { border-color: #f00; }
+    .social-btn.yt { border-color: #ff0000; }
 
     .footer-bottom {
       border-top: 1px solid rgba(0,212,255,0.07);
@@ -308,7 +330,8 @@
       margin-top: 10px;
     }
     .footer-dashes span {
-      width: 44px; height: 2px;
+      width: 44px;
+      height: 2px;
       background: var(--orange);
       border-radius: 2px;
       display: block;
@@ -336,6 +359,11 @@
 <nav>
   <a class="logo" href="#">
     <svg class="logo-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 8 L26 4 L44 8 L48 26 L44 44 L26 48 L8 44 L4 26 Z" stroke="url(#lg1)" stroke-width="1.5" fill="none"/>
+      <path d="M14 14 L26 10 L38 14 L42 26 L38 38 L26 42 L14 38 L10 26 Z" stroke="url(#lg2)" stroke-width="1" fill="none" opacity="0.5"/>
+      <path d="M12 18 L26 26 L40 18" stroke="#00d4ff" stroke-width="1.5" fill="none"/>
+      <path d="M12 26 L26 34 L40 26" stroke="#ff6b00" stroke-width="1.5" fill="none"/>
+      <path d="M26 10 L26 42" stroke="url(#lg3)" stroke-width="1" opacity="0.4"/>
       <defs>
         <linearGradient id="lg1" x1="4" y1="4" x2="48" y2="48" gradientUnits="userSpaceOnUse">
           <stop stop-color="#00d4ff"/><stop offset="1" stop-color="#ff6b00"/>
@@ -347,11 +375,6 @@
           <stop stop-color="#00d4ff"/><stop offset="1" stop-color="#ff6b00"/>
         </linearGradient>
       </defs>
-      <path d="M8 8 L26 4 L44 8 L48 26 L44 44 L26 48 L8 44 L4 26 Z" stroke="url(#lg1)" stroke-width="1.5" fill="none"/>
-      <path d="M14 14 L26 10 L38 14 L42 26 L38 38 L26 42 L14 38 L10 26 Z" stroke="url(#lg2)" stroke-width="1" fill="none" opacity="0.5"/>
-      <path d="M12 18 L26 26 L40 18" stroke="#00d4ff" stroke-width="1.5" fill="none"/>
-      <path d="M12 26 L26 34 L40 26" stroke="#ff6b00" stroke-width="1.5" fill="none"/>
-      <path d="M26 10 L26 42" stroke="url(#lg3)" stroke-width="1" opacity="0.4"/>
     </svg>
     <div class="logo-text">
       <span class="brand">PARAMETRIC <span>FLOW</span></span>
@@ -367,6 +390,7 @@
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="inicio">
   <canvas id="waveCanvas" class="hero-canvas"></canvas>
+
   <div class="hero-text">
     <h1>
       Automatizamos <span class="accent-cyan">procesos.</span><br>
@@ -486,6 +510,7 @@
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <p class="footer-label">Contacto</p>
+
   <div class="footer-body">
     <div class="contact-item">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -494,7 +519,9 @@
       </svg>
       parametricflow@gmail.com
     </div>
+
     <div class="footer-sep"></div>
+
     <div class="social-icons">
       <a class="social-btn li" href="#" aria-label="LinkedIn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="#00d4ff">
@@ -510,65 +537,65 @@
         </svg>
       </a>
       <a class="social-btn yt" href="#" aria-label="YouTube">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.94C18.88 4 12 4 12 4s-6.88 0-8.6.48A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.94 1.94C5.12 20 12 20 12 20s6.88 0 8.6-.48a2.78 2.78 0 001.94-1.94A29 29 0 0023 12a29 29 0 00-.46-5.58z"/>
-          <polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02" fill="#f00" stroke="none"/>
+          <polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02" fill="#ff0000" stroke="none"/>
         </svg>
       </a>
     </div>
   </div>
+
   <div class="footer-bottom">
     <p>© 2026 Parametric Flow. Todos los derechos reservados.</p>
     <div class="footer-dashes">
-      <span></span><span></span>
+      <span></span>
+      <span></span>
     </div>
   </div>
 </footer>
 
 <!-- ═══ WAVE CANVAS ═══ -->
 <script>
-  (function () {
-    const canvas = document.getElementById('waveCanvas');
-    const ctx = canvas.getContext('2d');
-    const ROWS = 28, COLS = 60;
-    let t = 0, rafId;
+  const canvas = document.getElementById('waveCanvas');
+  const ctx    = canvas.getContext('2d');
 
-    function resize() {
-      canvas.width  = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
 
-    function draw() {
-      const W = canvas.width, H = canvas.height;
-      const cW = W / (COLS - 1), cH = H / (ROWS - 1);
-      ctx.clearRect(0, 0, W, H);
+  const ROWS = 28, COLS = 60;
+  let t = 0;
 
-      for (let r = 0; r < ROWS; r++) {
-        for (let c = 0; c < COLS; c++) {
-          const xN = c / (COLS - 1);
-          const yN = r / (ROWS - 1);
-          const dy = (Math.sin(xN * 6 - t * 1.2 + yN * 3) * 0.08
-                    + Math.sin(xN * 4 + t * 0.8 - yN * 2) * 0.06) * H;
-          const px = c * cW;
-          const py = r * cH + dy;
-          const rC = Math.round(xN * 255);
-          const gC = Math.round((1 - xN) * 212 + xN * 107);
-          const bC = Math.round((1 - xN) * 255);
-          const a  = 0.25 + 0.45 * (1 - yN) * (0.5 + 0.5 * Math.sin(xN * 8 - t));
-          ctx.beginPath();
-          ctx.arc(px, py, 1.2, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${rC},${gC},${bC},${a})`;
-          ctx.fill();
-        }
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const W = canvas.width, H = canvas.height;
+    const cW = W / (COLS - 1), cH = H / (ROWS - 1);
+
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const xN = c / (COLS - 1);
+        const yN = r / (ROWS - 1);
+        const w1 = Math.sin(xN * 6 - t * 1.2 + yN * 3) * 0.08;
+        const w2 = Math.sin(xN * 4 + t * 0.8 - yN * 2) * 0.06;
+        const px = c * cW;
+        const py = r * cH + (w1 + w2) * H;
+        const rC = Math.round(xN * 255);
+        const gC = Math.round((1 - xN) * 212 + xN * 107);
+        const bC = Math.round((1 - xN) * 255);
+        const a  = 0.25 + 0.45 * (1 - yN) * (0.5 + 0.5 * Math.sin(xN * 8 - t));
+        ctx.beginPath();
+        ctx.arc(px, py, 1.2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rC},${gC},${bC},${a})`;
+        ctx.fill();
       }
-      t += 0.012;
-      rafId = requestAnimationFrame(draw);
     }
-
-    resize();
-    window.addEventListener('resize', resize, { passive: true });
-    draw();
-  })();
+    t += 0.012;
+    requestAnimationFrame(draw);
+  }
+  draw();
 </script>
 
 </body>
