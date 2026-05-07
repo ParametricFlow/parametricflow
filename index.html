@@ -143,10 +143,27 @@
     /* Canvas ocupa la mitad derecha del hero */
     .hero-canvas {
       position: absolute;
-      top: 0; right: 0;
+      top: 0;
+      right: 0;
       width: 55%;
       height: 100%;
       z-index: 1;
+
+      opacity: 0.85;
+
+       -webkit-mask-image: linear-gradient(
+         to right,
+         transparent 0%,
+         rgba(0,0,0,0.15) 18%,
+         rgba(0,0,0,1) 40%
+      );
+
+      mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(0,0,0,0.15) 18%,
+      rgba(0,0,0,1) 40%
+    );
     }
     canvas#waveCanvas { width: 100%; height: 100%; display: block; }
 
