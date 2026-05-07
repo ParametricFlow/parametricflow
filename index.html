@@ -681,7 +681,7 @@ function drawWave(offsetY, amplitude, color, opacity, speedOffset) {
       Math.sin(x * 0.008 + time + speedOffset) * amplitude +
       Math.sin(x * 0.003 + time * 0.6) * (amplitude * 0.35);
 
-    if (x === Math.floor(canvas.width * 0.22)) {
+    if (x === Math.floor(canvas.width * 0.30)) {
       ctx.moveTo(x, y);
     } else {
       ctx.lineTo(x, y);
