@@ -657,8 +657,12 @@
   const ctx    = canvas.getContext('2d');
 
   function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    const DPR = window.devicePixelRatio || 1;
+
+    canvas.width = canvas.offsetWidth * DPR;
+    canvas.height = canvas.offsetHeight * DPR;
+
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   }
   resize();
   window.addEventListener('resize', resize);
@@ -670,9 +674,9 @@ function drawWave(offsetY, amplitude, color, opacity, speedOffset) {
 
   ctx.beginPath();
 
-  for (let x = 0; x <= canvas.width; x += 2) {
+  for (let x = 0; x <= canvas.offsetWidth; x += 2){
 
-    const normalizedX = x / canvas.width;
+    const normalizedX = x / canvas.offsetWidth;
 
     if (normalizedX < 0.30) continue;
 
@@ -681,7 +685,7 @@ function drawWave(offsetY, amplitude, color, opacity, speedOffset) {
       Math.sin(x * 0.008 + time + speedOffset) * amplitude +
       Math.sin(x * 0.003 + time * 0.6) * (amplitude * 0.35);
 
-    if (x === Math.floor(canvas.width * 0.30)) {
+    if (x === Math.floor(canvas.offsetWidth * 0.30)) {
       ctx.moveTo(x, y);
     } else {
       ctx.lineTo(x, y);
