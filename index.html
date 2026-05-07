@@ -397,9 +397,19 @@
   }
 
   .pillars-box {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    align-items: start;
   }
+
+  .pillar {
+  padding: 10px 6px;
+  }
+
+ .pillar span {
+  font-size: 10px;
+  letter-spacing: 1px;
+ }
 
   footer {
     padding: 20px;
