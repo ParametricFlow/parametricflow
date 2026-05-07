@@ -661,7 +661,7 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-let time = 200;
+let time = 0;
 
 function drawWave(offsetY, amplitude, frequency, speed, color, width, opacity) {
 
@@ -690,7 +690,7 @@ function drawWave(offsetY, amplitude, frequency, speed, color, width, opacity) {
 
   ctx.globalAlpha = opacity;
 
-  ctx.shadowBlur = 18;
+  ctx.shadowBlur = 12;
   ctx.shadowColor = color;
 
   ctx.stroke();
@@ -703,9 +703,10 @@ function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (let i = 0; i < 28; i++) {
+  for (let i = 0; i < 38; i++) {
 
     drawWave(
-      canvas.height * 0.12 + i * 18,
+      canvas.height * 0.12 + i * 13,
       18 + i * 1.4,
       0.009,
       1 + i * 0.02,
