@@ -211,16 +211,19 @@
     .services-grid::before { left: 33.33%; }
     .services-grid::after  { left: 66.66%; }
 
-    .service-card {
-      padding: 24px 28px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 12px;
-    }
-    .service-card:hover { transform: none; }
+   .service-card {
+     padding: 24px 28px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     text-align: center;
+     gap: 12px;
+    transition: none;
+   }
 
+.service-card:hover {
+  transform: translateY(0);
+}
     .service-icon { width: 52px; height: 52px; }
 
     .service-card h3 {
