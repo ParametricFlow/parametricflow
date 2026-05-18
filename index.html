@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parametric Flow – Design Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:  #050a0f;
+      --dark:   #080e14;
+      --cyan:   #00d4ff;
+      --orange: #ff6b00;
+      --orange-light: #ff8c3a;
+      --green:  #39d353;
+      --white:  #e8f4f8;
+      --gray:   #8aa0b0;
+      --border: rgba(0, 212, 255, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 60px;
+      background: rgba(5, 10, 15, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,212,255,0.07);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon { width: 46px; height: 46px; }
+
+    .logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .logo-text .brand {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--white);
+    }
+    .logo-text .brand span { color: var(--cyan); }
+    .logo-text .sub {
+      font-size: 8px;
+      letter-spacing: 4px;
+      color: var(--gray);
+      margin-top: 3px;
+    }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--gray);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--cyan);
+      border-radius: 2px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      min-height: 55vh;
+      padding: 100px 60px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-text { z-index: 2; }
+
+    .hero-text h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(26px, 3.2vw, 52px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .hero-text h1 .accent-cyan   { color: var(--cyan); }
+    .hero-text h1 .accent-orange { color: var(--orange); }
+
+    .hero-text p {
+      font-family: 'Sora', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 400px;
+      margin-bottom: 24px;
+    }
+
+    .hero-line { display: flex; align-items: center; gap: 10px; }
+    .hero-line-bar {
+      width: 140px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      border-radius: 2px;
+    }
+    .hero-line-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 12px var(--orange);
+    }
+
+    /* Canvas ocupa la mitad derecha del hero */
+    .hero-canvas {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 55%;
+      height: 100%;
+      z-index: 1;
+
+      opacity: 0.85;
+
+       -webkit-mask-image: linear-gradient(
+         to right,
+         transparent 0%,
+         rgba(0,0,0,0.02) 22%,
+         rgba(0,0,0,0.12) 32%,
+         rgba(0,0,0,0.35) 42%,
+         rgba(0,0,0,0.7) 52%,
+         rgba(0,0,0,1) 65%
+      );
+
+      mask-image: linear-gradient(
+      to right,
+         transparent 0%,
+         rgba(0,0,0,0.02) 22%,
+         rgba(0,0,0,0.12) 32%,
+         rgba(0,0,0,0.35) 42%,
+         rgba(0,0,0,0.7) 52%,
+         rgba(0,0,0,1) 65%
+    );
+  }
+    canvas#waveCanvas { width: 100%; height: 100%; display: block; }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 36px 60px 40px;
+      background: var(--dark);
+    }
+
+    .section-title {
+      text-align: center;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 32px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      position: relative;
+    }
+
+    /* separadores verticales entre cards */
+    .services-grid::before,
+    .services-grid::after {
+      content: "";
+      position: absolute;
+      top: 10%; bottom: 10%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--border), transparent);
+    }
+    .services-grid::before { left: 33.33%; }
+    .services-grid::after  { left: 66.66%; }
+
+   .service-card {
+     padding: 24px 28px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     text-align: center;
+     gap: 12px;
+    
+   }
+
+    .service-icon { width: 52px; height: 52px; }
+
+    .service-card h3 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .service-card:nth-child(1) h3 { color: var(--cyan); }
+    .service-card:nth-child(2) h3 { color: var(--white); }
+    .service-card:nth-child(3) h3 { color: var(--orange); }
+
+    .service-card p {
+      font-family: 'Sora', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.6;
+      max-width: 240px;
+    }
+
+    /* ── PILLARS ── */
+    .pillars {
+      padding: 0 60px 48px;
+      background: var(--dark);
+    }
+
+    .pillars-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 860px;
+      margin: 0 auto;
+      justify-items: center;
+    }
+
+    .pillar {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      transition: background 0.3s;
+    }
+   
+    .pillar:hover { background: rgba(0,212,255,0.04); }
+
+    .pillar-icon { width: 38px; height: 38px; flex-shrink: 0; }
+
+    .pillar span {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 16px 60px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--orange);
+      text-align: center;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .footer-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    .footer-sep {
+      width: 1px;
+      height: 28px;
+      background: var(--border);
+    }
+
+    .social-icons { display: flex; align-items: center; gap: 12px; }
+
+    .social-btn {
+      width: 38px; height: 38px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid;
+      text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .social-btn:hover { transform: translateY(-2px); opacity: 0.8; }
+    .social-btn.li { border-color: var(--cyan); }
+    .social-btn.ig { border-color: #e1306c; }
+    .social-btn.yt { border-color: #ff0000; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(0,212,255,0.07);
+      padding-top: 8px;
+      text-align: center;
+    }
+    .footer-bottom p {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: rgba(138,160,176,0.45);
+    }
+    .footer-dashes {
+      display: flex;
+      justify-content: center;
+      gap: 90px;
+      margin-top: 10px;
+    }
+    .footer-dashes span {
+      width: 44px;
+      height: 2px;
+      background: var(--orange);
+      border-radius: 2px;
+      display: block;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-text h1 { animation: fadeUp 0.7s ease both; }
+    .hero-text p  { animation: fadeUp 0.7s 0.12s ease both; }
+    .hero-line    { animation: fadeUp 0.7s 0.24s ease both; }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 10px var(--orange); }
+      50%       { box-shadow: 0 0 22px var(--orange), 0 0 36px rgba(255,107,0,0.35); }
+    }
+    .hero-line-dot { animation: pulse 2s ease infinite; }
+
+    /* ───────────── MOBILE ───────────── */
+@media (max-width: 768px) {
+
+  nav {
+    padding: 14px 20px;
+  }
+
+  .logo {
+    transform: scale(0.82);
+    transform-origin: left center;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 100px 20px 40px;
+  }
+
+  .hero-text p {
+    max-width: 100%;
+  }
+
+  .hero-canvas {
+    width: 100%;
+    height: 40%;
+    opacity: 0.4;
+  }
+
+  .services {
+    padding: 30px 20px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .services-grid::before,
+  .services-grid::after {
+    display: none;
+  }
+
+  .pillars {
+    padding: 20px;
+  }
+
+  .pillars-box {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    align-items: start;
+  }
+
+  .pillar {
+  padding: 10px 6px;
+  }
+
+ .pillar span {
+  font-size: 10px;
+  letter-spacing: 1px;
+ }
+
+  footer {
+    padding: 20px;
+  }
+
+  .footer-body {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-sep {
+    display: none;
+  }
+}    
+
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav>
+  <a class="logo" href="#">
+    <svg class="logo-icon" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M8 8 L26 4 L44 8 L48 26 L44 44 L26 48 L8 44 L4 26 Z" stroke="url(#lg1)" stroke-width="1.5" fill="none"/>
+      <path d="M14 14 L26 10 L38 14 L42 26 L38 38 L26 42 L14 38 L10 26 Z" stroke="url(#lg2)" stroke-width="1" fill="none" opacity="0.5"/>
+      <path d="M12 18 L26 26 L40 18" stroke="#00d4ff" stroke-width="1.5" fill="none"/>
+      <path d="M12 26 L26 34 L40 26" stroke="#ff6b00" stroke-width="1.5" fill="none"/>
+      <path d="M26 10 L26 42" stroke="url(#lg3)" stroke-width="1" opacity="0.4"/>
+      <defs>
+        <linearGradient id="lg1" x1="4" y1="4" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#00d4ff"/><stop offset="1" stop-color="#ff6b00"/>
+        </linearGradient>
+        <linearGradient id="lg2" x1="4" y1="4" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#00d4ff"/><stop offset="1" stop-color="#ff6b00"/>
+        </linearGradient>
+        <linearGradient id="lg3" x1="26" y1="10" x2="26" y2="42" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#00d4ff"/><stop offset="1" stop-color="#ff6b00"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="logo-text">
+      <span class="brand">PARAMETRIC <span>FLOW</span></span>
+      <span class="sub">DESIGN INTELLIGENCE</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">INICIO</a></li>
+    <li><a href="#">PROYECTOS</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="inicio">
+  <canvas id="waveCanvas" class="hero-canvas"></canvas>
+
+  <div class="hero-text">
+    <h1>
+      Automatizamos <span class="accent-cyan">procesos.</span><br>
+      Optimizamos <span class="accent-orange">resultados.</span>
+    </h1>
+    <p>Ingeniería paramétrica y automatización inteligente para llevar tus proyectos al siguiente nivel.</p>
+    <div class="hero-line">
+      <div class="hero-line-bar"></div>
+      <div class="hero-line-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUÉ HACEMOS ═══ -->
+<section class="services" id="servicios">
+  <p class="section-title">¿Qué Hacemos?</p>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="50,6 88,28 88,72 50,94 12,72 12,28" stroke="#00D4FF" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+        <polygon points="50,20 74,34 74,62 50,76 26,62 26,34" stroke="#00D4FF" stroke-width="1.5" fill="none" stroke-linejoin="round" opacity="0.5"/>
+        <line x1="50" y1="6" x2="50" y2="94" stroke="#00D4FF" stroke-width="1" opacity="0.3"/>
+        <line x1="12" y1="28" x2="88" y2="72" stroke="#00D4FF" stroke-width="1" opacity="0.3"/>
+        <line x1="88" y1="28" x2="12" y2="72" stroke="#00D4FF" stroke-width="1" opacity="0.3"/>
+        <circle cx="50" cy="20" r="2.5" fill="#00D4FF"/>
+        <circle cx="74" cy="34" r="2.5" fill="#00D4FF"/>
+        <circle cx="74" cy="62" r="2.5" fill="#00D4FF"/>
+        <circle cx="50" cy="76" r="2.5" fill="#00D4FF"/>
+        <circle cx="26" cy="62" r="2.5" fill="#00D4FF"/>
+        <circle cx="26" cy="34" r="2.5" fill="#00D4FF"/>
+        <circle cx="50" cy="50" r="3.5" fill="#00D4FF"/>
+      </svg>
+      <h3>Automatización CAD</h3>
+      <p>Desarrollamos macros y herramientas personalizadas para optimizar procesos de diseño.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="20" stroke="#e8f4f8" stroke-width="1.5" fill="none"/>
+        <circle cx="32" cy="32" r="10" stroke="#e8f4f8" stroke-width="1" fill="none" opacity="0.5"/>
+        <circle cx="32" cy="32" r="3" fill="#e8f4f8"/>
+        <g stroke="#e8f4f8" stroke-width="1.5">
+          <line x1="32" y1="8"  x2="32" y2="4"/>
+          <line x1="32" y1="56" x2="32" y2="60"/>
+          <line x1="8"  y1="32" x2="4"  y2="32"/>
+          <line x1="56" y1="32" x2="60" y2="32"/>
+          <line x1="14" y1="14" x2="11" y2="11"/>
+          <line x1="50" y1="50" x2="53" y2="53"/>
+          <line x1="50" y1="14" x2="53" y2="11"/>
+          <line x1="14" y1="50" x2="11" y2="53"/>
+        </g>
+      </svg>
+      <h3>Generación Paramétrica</h3>
+      <p>Creamos sistemas paramétricos flexibles adaptados a tus necesidades.</p>
+    </div>
+
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="50,6 88,28 88,72 50,94 12,72 12,28" stroke="#F5A623" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+        <polygon points="50,30 62,37 50,44 38,37" stroke="#F5A623" stroke-width="2" fill="none" stroke-linejoin="round"/>
+        <polygon points="38,37 50,44 50,58 38,51" stroke="#F5A623" stroke-width="2" fill="none" stroke-linejoin="round"/>
+        <polygon points="62,37 50,44 50,58 62,51" stroke="#F5A623" stroke-width="2" fill="none" stroke-linejoin="round"/>
+        <polygon points="68,52 74,55.5 68,59 62,55.5" stroke="#F5A623" stroke-width="1.5" fill="none" stroke-linejoin="round" opacity="0.7"/>
+        <polygon points="62,55.5 68,59 68,66 62,62.5" stroke="#F5A623" stroke-width="1.5" fill="none" stroke-linejoin="round" opacity="0.7"/>
+        <polygon points="74,55.5 68,59 68,66 74,62.5" stroke="#F5A623" stroke-width="1.5" fill="none" stroke-linejoin="round" opacity="0.7"/>
+        <circle cx="50" cy="6" r="2.5" fill="#F5A623"/>
+        <circle cx="88" cy="28" r="2.5" fill="#F5A623"/>
+        <circle cx="88" cy="72" r="2.5" fill="#F5A623"/>
+        <circle cx="50" cy="94" r="2.5" fill="#F5A623"/>
+        <circle cx="12" cy="72" r="2.5" fill="#F5A623"/>
+        <circle cx="12" cy="28" r="2.5" fill="#F5A623"/>
+      </svg>
+      <h3>Soluciones a Medida</h3>
+      <p>Desarrollamos soluciones personalizadas para mejorar tu flujo de trabajo.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ PILLARS ═══ -->
+<section class="pillars">
+  <div class="pillars-box">
+
+    <div class="pillar">
+      <svg class="pillar-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="42" stroke="#00D4FF" stroke-width="2.5"/>
+        <circle cx="50" cy="50" r="28" stroke="#00D4FF" stroke-width="2"/>
+        <circle cx="50" cy="50" r="14" stroke="#00D4FF" stroke-width="1.5"/>
+        <line x1="50" y1="5" x2="50" y2="21" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="50" y1="79" x2="50" y2="95" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="5" y1="50" x2="21" y2="50" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="79" y1="50" x2="95" y2="50" stroke="#00D4FF" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="50" y1="22" x2="50" y2="36" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line x1="50" y1="64" x2="50" y2="78" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line x1="22" y1="50" x2="36" y2="50" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line x1="64" y1="50" x2="78" y2="50" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line x1="20.3" y1="20.3" x2="25.6" y2="25.6" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line x1="74.4" y1="74.4" x2="79.7" y2="79.7" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line x1="79.7" y1="20.3" x2="74.4" y2="25.6" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <line x1="25.6" y1="74.4" x2="20.3" y2="79.7" stroke="#00D4FF" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+        <circle cx="50" cy="50" r="3.5" fill="#00D4FF"/>
+        <circle cx="50" cy="50" r="1.5" fill="white" opacity="0.8"/>
+      </svg>
+      <span>PRECISIÓN</span>
+    </div>
+
+    <div class="pillar">
+      <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="4" fill="#39d353"/>
+        <circle cx="8"  cy="16" r="3" stroke="#39d353" stroke-width="1.5" fill="none"/>
+        <circle cx="40" cy="16" r="3" stroke="#39d353" stroke-width="1.5" fill="none"/>
+        <circle cx="8"  cy="36" r="3" stroke="#39d353" stroke-width="1.5" fill="none"/>
+        <circle cx="40" cy="36" r="3" stroke="#39d353" stroke-width="1.5" fill="none"/>
+        <line x1="24" y1="24" x2="10" y2="18" stroke="#39d353" stroke-width="1"/>
+        <line x1="24" y1="24" x2="38" y2="18" stroke="#39d353" stroke-width="1"/>
+        <line x1="24" y1="24" x2="10" y2="34" stroke="#39d353" stroke-width="1"/>
+        <line x1="24" y1="24" x2="38" y2="34" stroke="#39d353" stroke-width="1"/>
+      </svg>
+      <span>TECNOLOGÍA<br>CONECTADA</span>
+    </div>
+
+    <div class="pillar">
+      <svg class="pillar-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50 22 C 50 22 38 18 30 24 C 22 30 20 38 24 44 C 18 46 16 52 20 58 C 16 64 20 74 30 76 C 34 80 42 80 50 78" stroke="#ff8c3a" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 50 22 C 50 22 62 18 70 24 C 78 30 80 38 76 44 C 82 46 84 52 80 58 C 84 64 80 74 70 76 C 66 80 58 80 50 78" stroke="#ff8c3a" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="50" y1="22" x2="50" y2="78" stroke="#ff8c3a" stroke-width="1.5" opacity="0.5" stroke-dasharray="4,3"/>
+        <path d="M 28 38 C 34 36 40 40 38 46" stroke="#ff8c3a" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <path d="M 24 54 C 30 52 38 56 36 62" stroke="#ff8c3a" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <path d="M 72 38 C 66 36 60 40 62 46" stroke="#ff8c3a" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <path d="M 76 54 C 70 52 62 56 64 62" stroke="#ff8c3a" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+        <circle cx="30" cy="30" r="2.5" fill="#ff8c3a" opacity="0.8"/>
+        <circle cx="26" cy="50" r="2.5" fill="#ff8c3a" opacity="0.8"/>
+        <circle cx="32" cy="68" r="2.5" fill="#ff8c3a" opacity="0.8"/>
+        <circle cx="70" cy="30" r="2.5" fill="#ff8c3a" opacity="0.8"/>
+        <circle cx="74" cy="50" r="2.5" fill="#ff8c3a" opacity="0.8"/>
+        <circle cx="68" cy="68" r="2.5" fill="#ff8c3a" opacity="0.8"/>
+        <circle cx="50" cy="50" r="3.5" fill="#ff8c3a"/>
+        <line x1="30" y1="30" x2="50" y2="50" stroke="#ff8c3a" stroke-width="1" opacity="0.4"/>
+        <line x1="70" y1="30" x2="50" y2="50" stroke="#ff8c3a" stroke-width="1" opacity="0.4"/>
+        <line x1="26" y1="50" x2="50" y2="50" stroke="#ff8c3a" stroke-width="1" opacity="0.4"/>
+        <line x1="74" y1="50" x2="50" y2="50" stroke="#ff8c3a" stroke-width="1" opacity="0.4"/>
+      </svg>
+      <span>SOLUCIONES<br>INTELIGENTES</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <p class="footer-label">Contacto</p>
+
+  <div class="footer-body">
+    <div class="contact-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <polyline points="2,4 12,13 22,4"/>
+      </svg>
+      parametricflow@gmail.com
+    </div>
+
+    <div class="footer-sep"></div>
+
+    <div class="social-icons">
+      <a class="social-btn li" href="#" aria-label="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#00d4ff">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </a>
+      <a class="social-btn ig" href="#" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a class="social-btn yt" href="#" aria-label="YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.94C18.88 4 12 4 12 4s-6.88 0-8.6.48A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.94 1.94C5.12 20 12 20 12 20s6.88 0 8.6-.48a2.78 2.78 0 001.94-1.94A29 29 0 0023 12a29 29 0 00-.46-5.58z"/>
+          <polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02" fill="#ff0000" stroke="none"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Parametric Flow. Todos los derechos reservados.</p>
+    <div class="footer-dashes">
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ WAVE CANVAS ═══ -->
+<script>
+  const canvas = document.getElementById('waveCanvas');
+  const ctx    = canvas.getContext('2d');
+
+  function resize() {
+    const DPR = window.devicePixelRatio || 1;
+
+    canvas.width = canvas.offsetWidth * DPR;
+    canvas.height = canvas.offsetHeight * DPR;
+
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const LINES = 24;
+let time = 0;
+
+function drawWave(offsetY, amplitude, color, opacity, speedOffset) {
+
+  ctx.beginPath();
+
+  for (let x = 0; x <= canvas.offsetWidth; x += 2){
+
+    const normalizedX = x / canvas.offsetWidth;
+
+    if (normalizedX < 0.30) continue;
+
+    const y =
+      offsetY +
+      Math.sin(x * 0.008 + time + speedOffset) * amplitude +
+      Math.sin(x * 0.003 + time * 0.6) * (amplitude * 0.35);
+
+    if (x === Math.floor(canvas.offsetWidth * 0.30)) {
+      ctx.moveTo(x, y);
+    } else {
+      ctx.lineTo(x, y);
+    }
+  }
+
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1;
+
+  ctx.globalAlpha = opacity;
+
+  ctx.shadowBlur = 3;
+  ctx.shadowColor = color;
+
+  ctx.stroke();
+
+  ctx.globalAlpha = 1;
+}
+
+function animate() {
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < LINES; i++) {
+
+    const y =
+      canvas.height * 0.05 +
+      i * 18;
+
+    drawWave(
+      y,
+      24,
+      i % 5 === 0
+        ? 'rgba(255,107,0,0.9)'
+        : 'rgba(0,212,255,0.9)',
+      0.05 + i * 0.012,
+      i * 0.18
+    );
+  }
+
+  time += 0.008;
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
