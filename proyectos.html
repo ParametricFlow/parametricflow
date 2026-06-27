@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proyectos – Parametric Flow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav>
+  <a class="logo" href="index.html">
+    <img class="logo-icon" src="assets/images/LOGO_PARAMETRIC.png" alt="Parametric Flow Logo" />
+    <div class="logo-text">
+      <span class="brand">PARAMETRIC <span>FLOW</span></span>
+      <span class="sub">DESIGN INTELLIGENCE</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" data-es="INICIO" data-en="HOME">INICIO</a></li>
+    <li><a href="proyectos.html" class="active" data-es="PROYECTOS" data-en="PROJECTS">PROYECTOS</a></li>
+  </ul>
+
+  <button class="lang-toggle" type="button" aria-label="Cambiar idioma">EN</button>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+    <svg class="icon-burger" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+    <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-nav-links">
+    <li>
+      <a href="index.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 11.5 12 4l9 7.5"/>
+          <path d="M5 10v9.5a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/>
+        </svg>
+        <span data-es="INICIO" data-en="HOME">INICIO</span>
+      </a>
+    </li>
+    <li>
+      <a href="proyectos.html" class="active">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="7" width="18" height="13" rx="2"/>
+          <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+        </svg>
+        <span data-es="PROYECTOS" data-en="PROJECTS">PROYECTOS</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- ═══ HEADER DE PÁGINA ═══ -->
+<header class="page-header">
+  <h1><span data-es="NUESTRO " data-en="OUR ">NUESTRO </span><span class="accent-cyan" data-es="TRABAJO" data-en="WORK">TRABAJO</span></h1>
+  <div class="page-header-line">
+    <div class="page-header-bar-cyan"></div>
+    <div class="page-header-dot"></div>
+    <div class="page-header-bar-orange"></div>
+  </div>
+</header>
+
+<!-- ═══ GRID DE PROYECTOS ═══ -->
+<section class="projects">
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,6 88,28 88,72 50,94 12,72 12,28" stroke="#22e7f4" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+          <circle cx="50" cy="50" r="3.5" fill="#22e7f4"/>
+        </svg>
+      </div>
+      <span class="project-tag" data-es="Automatización CAD" data-en="CAD Automation">Automatización CAD</span>
+      <h3 data-es="Generador de planos automatizado" data-en="Automated Blueprint Generator">Generador de planos automatizado</h3>
+      <p data-es="Macro que reduce de horas a minutos la generación de planos técnicos repetitivos para un cliente del sector industrial." data-en="A macro that reduces the generation of repetitive technical drawings from hours to minutes for an industrial sector client.">Macro que reduce de horas a minutos la generación de planos técnicos repetitivos para un cliente del sector industrial.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <svg width="44" height="44" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="20" stroke="#ffa10a" stroke-width="1.5" fill="none"/>
+          <circle cx="32" cy="32" r="3" fill="#ffa10a"/>
+        </svg>
+      </div>
+      <span class="project-tag" data-es="Diseño Paramétrico" data-en="Parametric Design">Diseño Paramétrico</span>
+      <h3 data-es="Sistema modular adaptable" data-en="Adaptable Modular System">Sistema modular adaptable</h3>
+      <p data-es="Modelo paramétrico que ajusta automáticamente geometría y materiales según las restricciones de cada proyecto." data-en="A parametric model that automatically adjusts geometry and materials according to each project's constraints.">Modelo paramétrico que ajusta automáticamente geometría y materiales según las restricciones de cada proyecto.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="3.5" fill="#39d353"/>
+          <circle cx="50" cy="50" r="28" stroke="#39d353" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="project-tag" data-es="Soluciones a medida" data-en="Custom Solutions">Soluciones a medida</span>
+      <h3 data-es="Integración de flujo de trabajo" data-en="Workflow Integration">Integración de flujo de trabajo</h3>
+      <p data-es="Herramienta a medida que conecta distintos softwares de diseño para eliminar pasos manuales entre etapas." data-en="A custom tool that connects different design software to eliminate manual steps between stages.">Herramienta a medida que conecta distintos softwares de diseño para eliminar pasos manuales entre etapas.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="contacto">
+  <div class="footer-body">
+    <button class="contact-btn" id="openContactModal" type="button">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <polyline points="2,4 12,13 22,4"/>
+      </svg>
+      <span data-es="Contáctanos" data-en="Contact Us">Contáctanos</span>
+    </button>
+
+    <div class="footer-sep"></div>
+
+    <div class="social-icons">
+      <a class="social-btn li" href="#" aria-label="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#00d4ff">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </a>
+      <a class="social-btn ig" href="#" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a class="social-btn yt" href="#" aria-label="YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.94C18.88 4 12 4 12 4s-6.88 0-8.6.48A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.94 1.94C5.12 20 12 20 12 20s6.88 0 8.6-.48a2.78 2.78 0 001.94-1.94A29 29 0 0023 12a29 29 0 00-.46-5.58z"/>
+          <polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02" fill="#ff0000" stroke="none"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p data-es="© 2026 Parametric Flow. Todos los derechos reservados." data-en="© 2026 Parametric Flow. All rights reserved.">© 2026 Parametric Flow. Todos los derechos reservados.</p>
+    <div class="footer-dashes">
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ MODAL DE CONTACTO ═══ -->
+<div class="contact-overlay" id="contactOverlay"></div>
+
+<div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+  <button class="contact-modal-close" id="closeContactModal" type="button" aria-label="Cerrar formulario">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <h2 id="contactModalTitle" data-es="Cuéntanos tu proyecto" data-en="Tell Us About Your Project">Cuéntanos tu proyecto</h2>
+  <p class="contact-modal-sub" data-es="Completa el formulario y te responderemos lo antes posible." data-en="Fill out the form and we'll get back to you as soon as possible.">Completa el formulario y te responderemos lo antes posible.</p>
+
+  <form id="contactForm" novalidate>
+    <label for="contactName" data-es="Nombre" data-en="Name">Nombre</label>
+    <input type="text" id="contactName" name="nombre" required />
+
+    <label for="contactSubject" data-es="Correo electrónico" data-en="Email">Correo electrónico</label>
+    <input type="email" id="contactSubject" name="email" required />
+
+    <label for="contactMessage" data-es="Descripción" data-en="Description">Descripción</label>
+    <textarea id="contactMessage" name="descripcion" placeholder="Cuéntanos más sobre tu proyecto" data-es-placeholder="Cuéntanos más sobre tu proyecto" data-en-placeholder="Tell us more about your project" rows="4" required></textarea>
+
+    <button type="submit" class="contact-submit" data-es="Enviar mensaje" data-en="Send Message">Enviar mensaje</button>
+
+    <p class="contact-form-status" id="contactFormStatus"></p>
+  </form>
+</div>
+
+<script src="js/menu.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/i18n.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parametric Flow – Design Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav>
+  <a class="logo" href="index.html">
+    <img class="logo-icon" src="assets/images/LOGO_PARAMETRIC.png" alt="Parametric Flow Logo" />
+    <div class="logo-text">
+      <span class="brand">PARAMETRIC <span>FLOW</span></span>
+      <span class="sub">DESIGN INTELLIGENCE</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active" data-es="INICIO" data-en="HOME">INICIO</a></li>
+    <li><a href="proyectos.html" data-es="PROYECTOS" data-en="PROJECTS">PROYECTOS</a></li>
+  </ul>
+
+  <button class="lang-toggle" type="button" aria-label="Cambiar idioma">EN</button>
+
+  <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+    <svg class="icon-burger" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+    <svg class="icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-nav-links">
+    <li>
+      <a href="index.html#inicio" class="active">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 11.5 12 4l9 7.5"/>
+          <path d="M5 10v9.5a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/>
+        </svg>
+        <span data-es="INICIO" data-en="HOME">INICIO</span>
+      </a>
+    </li>
+    <li>
+      <a href="proyectos.html">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="7" width="18" height="13" rx="2"/>
+          <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+        </svg>
+        <span data-es="PROYECTOS" data-en="PROJECTS">PROYECTOS</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="inicio">
+  <canvas id="waveCanvas" class="hero-canvas"></canvas>
+
+  <div class="hero-text">
+    <h1>
+      <span data-es="Ingeniería que " data-en="Engineering that ">Ingeniería que </span><span class="accent-cyan" data-es="transforma." data-en="transforms.">transforma.</span><br>
+      <span data-es="Automatización que " data-en="Automation that ">Automatización que </span><span class="accent-orange" data-es="escala." data-en="scales.">escala.</span>
+    </h1>
+
+    <p data-es="Herramientas inteligentes que reducen tiempos, minimizan errores y aumentan la productividad." data-en="Smart tools that reduce time, minimize errors, and increase productivity.">
+      Herramientas inteligentes que reducen tiempos, minimizan errores y aumentan la productividad.
+    </p>
+
+    <div class="hero-line">
+      <div class="hero-line-bar"></div>
+      <div class="hero-line-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUÉ HACEMOS ═══ -->
+<section class="services" id="servicios">
+  <div class="section-header">
+    <h2 class="section-title" data-es="Áreas de competencia" data-en="Areas of Expertise">Áreas de competencia</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon-wrap">
+        <svg class="service-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M 32,2 L 35,2 L 36.6,9 L 43.2,11.5 L 49,7.5 L 52,10.5
+       L 48,17 L 50.5,23.5 L 57.5,25 L 57.5,28.5 L 50.5,30.5
+       L 48,37 L 52,43.5 L 49,46.5 L 43.2,42.5 L 36.6,45
+       L 35,52 L 32,52 L 30.5,45 L 23.9,42.5 L 17.5,46.5
+       L 14.5,43.5 L 18.5,37 L 16,30.5 L 9,28.5 L 9,25
+       L 16,23.5 L 18.5,17 L 14.5,10.5 L 17.5,7.5
+       L 23.9,11.5 L 30.5,9 Z"
+    fill="#bfeef5" stroke="#0a9fc9" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="33.5" cy="27" r="14" fill="#ffffff" stroke="#0a9fc9" stroke-width="2"/>
+  <path
+    d="M 37,13 L 27,30 L 33,30 L 29,43 L 41,24 L 35,24 Z"
+    fill="#ff9d0a" stroke="#ff9d0a" stroke-width="0.5" stroke-linejoin="round"/>
+</svg>
+      </div>
+      <h3 data-es="Automatización de Procesos" data-en="Process Automation">Automatización de Procesos</h3>
+      <p data-es="Scripts y macros que eliminan tareas repetitivas dentro de tu entorno CAD." data-en="Scripts and macros that eliminate repetitive tasks within your CAD environment.">Scripts y macros que eliminan tareas repetitivas dentro de tu entorno CAD.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon-wrap">
+        <svg class="service-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="32" r="7" stroke="#1a9ab0" stroke-width="2.5" fill="white"/>
+        <circle cx="32" cy="12" r="7" stroke="#1a9ab0" stroke-width="2.5" fill="white"/>
+        <circle cx="52" cy="32" r="7" stroke="#1a9ab0" stroke-width="2.5" fill="white"/>
+        <circle cx="32" cy="52" r="7" stroke="#1a9ab0" stroke-width="2.5" fill="white"/>
+        <line x1="18" y1="28" x2="26" y2="18" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="38" y1="18" x2="46" y2="28" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="46" y1="36" x2="38" y2="46" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="26" y1="46" x2="18" y2="36" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h3 data-es="Modelado Paramétrico" data-en="Parametric Modeling">Modelado Paramétrico</h3>
+    <p data-es="Sistemas geométricos inteligentes que se regeneran automáticamente ante cualquier cambio de variables." data-en="Smart geometric systems that automatically regenerate with any change in variables.">Sistemas geométricos inteligentes que se regeneran automáticamente ante cualquier cambio de variables.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon-wrap">
+        <svg class="service-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="6" width="22" height="22" rx="4" fill="#e0f7fa" stroke="#0a9fc9" stroke-width="2"/>
+          <rect x="36" y="6" width="22" height="22" rx="4" fill="#ffffff" stroke="#0a9fc9" stroke-width="2"/>
+          <rect x="21" y="36" width="22" height="22" rx="4" fill="#ffffff" stroke="#0a9fc9" stroke-width="2"/>
+          <line x1="20" y1="24" x2="32" y2="40" stroke="#0a9fc9" stroke-width="1.8"/>
+          <line x1="44" y1="24" x2="32" y2="40" stroke="#0a9fc9" stroke-width="1.8"/>
+          <circle cx="20" cy="24" r="2.5" fill="#0a9fc9"/>
+          <circle cx="44" cy="24" r="2.5" fill="#0a9fc9"/>
+          <circle cx="32" cy="47" r="3" fill="#ff9d0a"/>
+        </svg>
+      </div>
+      <h3 data-es="Arquitectura de Soluciones" data-en="Solution Architecture">Arquitectura de Soluciones</h3>
+      <p data-es="Analizamos tus necesidades para diseñar soluciones escalables que optimicen el flujo de trabajo." data-en="We analyze your needs to design scalable solutions that optimize your workflow.">Analizamos tus necesidades para diseñar soluciones escalables que optimicen el flujo de trabajo.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="contacto">
+  <div class="footer-body">
+    <button class="contact-btn" id="openContactModal" type="button">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <polyline points="2,4 12,13 22,4"/>
+      </svg>
+      <span data-es="Contáctanos" data-en="Contact Us">Contáctanos</span>
+    </button>
+
+    <div class="footer-sep"></div>
+
+    <div class="social-icons">
+      <a class="social-btn li" href="#" aria-label="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#00d4ff">
+          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </a>
+      <a class="social-btn ig" href="#" aria-label="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </a>
+      <a class="social-btn yt" href="#" aria-label="YouTube">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22.54 6.42a2.78 2.78 0 00-1.94-1.94C18.88 4 12 4 12 4s-6.88 0-8.6.48A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.94 1.94C5.12 20 12 20 12 20s6.88 0 8.6-.48a2.78 2.78 0 001.94-1.94A29 29 0 0023 12a29 29 0 00-.46-5.58z"/>
+          <polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02" fill="#ff0000" stroke="none"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p data-es="© 2026 Parametric Flow. Todos los derechos reservados." data-en="© 2026 Parametric Flow. All rights reserved.">© 2026 Parametric Flow. Todos los derechos reservados.</p>
+    <div class="footer-dashes">
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ MODAL DE CONTACTO ═══ -->
+<div class="contact-overlay" id="contactOverlay"></div>
+
+<div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+  <button class="contact-modal-close" id="closeContactModal" type="button" aria-label="Cerrar formulario">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+  <h2 id="contactModalTitle" data-es="Cuéntanos tu proyecto" data-en="Tell Us About Your Project">Cuéntanos tu proyecto</h2>
+  <p class="contact-modal-sub" data-es="Completa el formulario y te responderemos lo antes posible." data-en="Fill out the form and we'll get back to you as soon as possible.">Completa el formulario y te responderemos lo antes posible.</p>
+
+  <form id="contactForm" novalidate>
+    <label for="contactName" data-es="Nombre" data-en="Name">Nombre</label>
+    <input type="text" id="contactName" name="nombre" required />
+
+    <label for="contactSubject" data-es="Correo electrónico" data-en="Email">Correo electrónico</label>
+    <input type="email" id="contactSubject" name="email" required />
+
+    <label for="contactMessage" data-es="Descripción" data-en="Description">Descripción</label>
+    <textarea id="contactMessage" name="descripcion" placeholder="Cuéntanos más sobre tu proyecto" data-es-placeholder="Cuéntanos más sobre tu proyecto" data-en-placeholder="Tell us more about your project" rows="4" required></textarea>
+
+    <button type="submit" class="contact-submit" data-es="Enviar mensaje" data-en="Send Message">Enviar mensaje</button>
+
+    <p class="contact-form-status" id="contactFormStatus"></p>
+  </form>
+</div>
+
+<script src="js/menu.js"></script>
+<script src="js/contact.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/waves.js"></script>
+
+</body>
+</html>

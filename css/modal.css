@@ -1,0 +1,140 @@
+.contact-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 8, 20, 0.65);
+  z-index: 190;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.contact-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.contact-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 440px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 28px;
+  z-index: 195;
+  transform: translate(-50%, -48%) scale(0.96);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.contact-modal.is-open {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.contact-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--gray);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 0;
+  transition: color 0.2s;
+}
+.contact-modal-close:hover { color: var(--cyan); }
+
+.contact-modal h2 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  padding-right: 20px;
+}
+
+.contact-modal-sub {
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+#contactForm { display: flex; flex-direction: column; }
+
+#contactForm label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 6px;
+}
+
+#contactForm input,
+#contactForm textarea {
+  width: 100%;
+  background: rgba(7,29,66,0.6);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 11px 14px;
+  margin-bottom: 18px;
+  color: var(--white);
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+#contactForm input:focus,
+#contactForm textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+#contactForm input::placeholder,
+#contactForm textarea::placeholder {
+  color: rgba(184,202,217,0.45);
+}
+
+.contact-submit {
+  background: linear-gradient(90deg, var(--cyan), #0a9fc9);
+  color: var(--black);
+  border: none;
+  padding: 13px;
+  border-radius: 6px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.contact-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(34,231,244,0.35);
+}
+.contact-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.contact-form-status {
+  margin-top: 14px;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  text-align: center;
+  min-height: 18px;
+}
+.contact-form-status.success { color: var(--green); }
+.contact-form-status.error   { color: var(--orange); }

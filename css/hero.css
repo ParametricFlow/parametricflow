@@ -1,0 +1,136 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 420px;
+  padding: 55px 60px 0px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-text { z-index: 2; }
+
+.hero-text h1 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(26px, 3.2vw, 52px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+  animation: fadeUp 0.7s ease both;
+}
+.hero-text h1 .accent-cyan   { color: var(--cyan); }
+.hero-text h1 .accent-orange { color: var(--orange); }
+
+.hero-text p {
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--gray);
+  line-height: 1.7;
+  max-width: 400px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.7s 0.12s ease both;
+}
+
+.hero-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeUp 0.7s 0.24s ease both;
+}
+.hero-line-bar {
+  width: 140px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), transparent);
+  border-radius: 2px;
+}
+.hero-line-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 12px var(--orange);
+  animation: pulse 2s ease infinite;
+}
+
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.85;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0,0,0,0.02) 22%,
+    rgba(0,0,0,0.12) 32%,
+    rgba(0,0,0,0.35) 42%,
+    rgba(0,0,0,0.7) 52%,
+    rgba(0,0,0,1) 65%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0,0,0,0.02) 22%,
+    rgba(0,0,0,0.12) 32%,
+    rgba(0,0,0,0.35) 42%,
+    rgba(0,0,0,0.7) 52%,
+    rgba(0,0,0,1) 65%
+  );
+}
+
+canvas#waveCanvas { width: 100%; height: 100%; display: block; }
+
+/* ── PAGE HEADER (proyectos.html) ── */
+.page-header {
+  padding: 70px 60px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-header h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(20px, 2.6vw, 24px);
+  font-weight: 700;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 6px;
+  margin-top: 26px;
+}
+
+.page-header h1 .accent-cyan {
+  color: var(--cyan);
+}
+
+.page-header-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-header-bar-cyan {
+  width: 80px;
+  height: 3px;
+  background: var(--cyan);
+  border-radius: 2px;
+}
+
+.page-header-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 8px var(--orange);
+}
+
+.page-header-bar-orange {
+  width: 80px;
+  height: 3px;
+  background: var(--orange);
+  border-radius: 2px;
+}
