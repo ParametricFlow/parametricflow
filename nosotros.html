@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nosotros — Parametric Flow</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/common.css">
+
+<style>
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:60px;
+    align-items:start;
+    margin-bottom:90px;
+}
+
+.about-grid p{
+    color:#C8D4EA;
+    font-size:15px;
+    line-height:1.8;
+    margin-bottom:18px;
+    opacity:.92;
+}
+
+.about-grid p strong{
+    color:#F4F6FA;
+    font-weight:600;
+}
+
+.about-figure{
+    position:relative;
+    border-radius:20px;
+    padding:40px 32px;
+    background:linear-gradient(160deg,rgba(20,50,110,.35),rgba(6,20,50,.35));
+    border:1px solid rgba(120,180,255,.16);
+    backdrop-filter:blur(10px);
+}
+
+.about-figure .big-number{
+    font-size:64px;
+    font-weight:800;
+    line-height:1;
+    background:linear-gradient(90deg,#1ED9FF,#4F78FF);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    margin-bottom:8px;
+}
+
+.about-figure .figure-label{
+    color:#D8E4F7;
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    opacity:.8;
+    margin-bottom:28px;
+}
+
+.about-figure .figure-desc{
+    color:#C8D4EA;
+    font-size:14px;
+    line-height:1.7;
+    opacity:.9;
+}
+
+/* Valores */
+
+.section-label{
+    color:#58D4FF;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    opacity:.85;
+    margin-bottom:14px;
+}
+
+.section-title{
+    font-size:clamp(24px,3.4vw,32px);
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    margin-bottom:42px;
+}
+
+.values-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+    margin-bottom:90px;
+}
+
+.value-card{
+    border:1px solid rgba(120,180,255,.16);
+    border-radius:16px;
+    padding:28px 22px;
+    background:rgba(15,40,90,.22);
+    transition:.3s;
+}
+
+.value-card:hover{
+    border-color:rgba(88,212,255,.4);
+    background:rgba(15,40,90,.36);
+    transform:translateY(-4px);
+}
+
+.value-card .mark{
+    width:38px;
+    height:2px;
+    background:linear-gradient(90deg,#1ED9FF,#4F78FF);
+    margin-bottom:18px;
+    border-radius:2px;
+}
+
+.value-card h3{
+    font-size:13px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:10px;
+    color:#F4F6FA;
+}
+
+.value-card p{
+    font-size:13.5px;
+    color:#C8D4EA;
+    line-height:1.65;
+    opacity:.85;
+}
+
+/* Enfoque / proceso */
+
+.process-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+}
+
+.process-item{
+    display:grid;
+    grid-template-columns:90px 1fr;
+    gap:28px;
+    padding:26px 0;
+    border-top:1px solid rgba(120,180,255,.14);
+}
+
+.process-item:last-child{
+    border-bottom:1px solid rgba(120,180,255,.14);
+}
+
+.process-item .step-num{
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:2px;
+    color:#58D4FF;
+    opacity:.85;
+}
+
+.process-item h4{
+    font-size:15px;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.process-item p{
+    color:#C8D4EA;
+    font-size:14px;
+    line-height:1.7;
+    opacity:.88;
+    max-width:640px;
+}
+
+@media (max-width:900px){
+
+    .about-grid{
+        grid-template-columns:1fr;
+        gap:32px;
+    }
+
+    .values-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .process-item{
+        grid-template-columns:60px 1fr;
+        gap:16px;
+    }
+}
+
+@media (max-width:560px){
+
+    .values-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a class="logo" href="index.html">
+        <img class="logo-icon" src="assets/images/logo.png" alt="Parametric Flow">
+        <div class="logo-text">
+            <span class="brand">
+                <span class="white">PARAMETRIC</span>
+                <span class="blue">FLOW</span>
+            </span>
+            <span class="sub">DESIGN INTELLIGENCE</span>
+        </div>
+    </a>
+
+    <nav>
+        <a href="proyectos.html">PROYECTOS</a>
+        <a href="nosotros.html" class="active">NOSOTROS</a>
+        <a href="blog.html">BLOG</a>
+        <a href="contacto.html">CONTACTO</a>
+    </nav>
+
+    <div class="language">
+        🌐 ES / US
+    </div>
+
+    <button class="menu-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+</header>
+
+<nav class="mobile-nav">
+    <a href="proyectos.html">PROYECTOS</a>
+    <a href="nosotros.html" class="active">NOSOTROS</a>
+    <a href="blog.html">BLOG</a>
+    <a href="contacto.html">CONTACTO</a>
+</nav>
+
+<main class="page-wrap">
+
+    <div class="page-hero">
+        <span class="eyebrow">Quiénes somos</span>
+        <h1>Ingeniería paramétrica con criterio de diseño</h1>
+        <p>Somos un estudio de diseño paramétrico y automatización CAD. Traducimos procesos manuales y modelos repetitivos en sistemas paramétricos que ahorran tiempo, reducen error humano y escalan con cada proyecto.</p>
+    </div>
+
+    <div class="page-content">
+
+        <div class="about-grid">
+            <div>
+                <p><strong>Parametric Flow</strong> nace de una idea simple: el diseño paramétrico no debería ser un lujo reservado a grandes despachos de ingeniería. Ayudamos a estudios, fabricantes y equipos técnicos a automatizar la parte repetitiva de su trabajo — para que el tiempo de sus especialistas se invierta en decisiones, no en repetición.</p>
+                <p>Combinamos <strong>arquitectura de soluciones</strong>, <strong>automatización de procesos</strong> y <strong>modelado paramétrico</strong> en flujos de trabajo a la medida de cada cliente, construidos sobre herramientas como Grasshopper, Rhino, Python y APIs de CAD.</p>
+                <p>Trabajamos de forma cercana y bilingüe (español / inglés), con entregables claros y comunicación directa en cada etapa del proyecto.</p>
+            </div>
+
+            <div class="about-figure">
+                <div class="big-number">100%</div>
+                <div class="figure-label">Paramétrico desde el día uno</div>
+                <div class="figure-desc">Cada flujo que entregamos está pensado para adaptarse: cambia una variable y el sistema completo se actualiza. Ese es el estándar con el que trabajamos cada proyecto.</div>
+            </div>
+        </div>
+
+        <div>
+            <div class="section-label">Nuestros valores</div>
+            <div class="section-title">Lo que guía cada entrega</div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="mark"></div>
+                    <h3>Precisión</h3>
+                    <p>Cada modelo y cada script se valida contra el resultado real, no solo contra la teoría.</p>
+                </div>
+                <div class="value-card">
+                    <div class="mark"></div>
+                    <h3>Diseño</h3>
+                    <p>La automatización no reemplaza el criterio de diseño: lo libera para enfocarse en lo importante.</p>
+                </div>
+                <div class="value-card">
+                    <div class="mark"></div>
+                    <h3>Innovación</h3>
+                    <p>Adoptamos herramientas nuevas cuando de verdad resuelven un problema, no por moda.</p>
+                </div>
+                <div class="value-card">
+                    <div class="mark"></div>
+                    <h3>Confianza</h3>
+                    <p>Comunicación clara, plazos realistas y entregables que puedes poner a prueba de inmediato.</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="section-label">Nuestro enfoque</div>
+            <div class="section-title">Cómo trabajamos</div>
+
+            <div class="process-list">
+                <div class="process-item">
+                    <div class="step-num">01</div>
+                    <div>
+                        <h4>Diagnóstico</h4>
+                        <p>Entendemos tu proceso actual: qué se repite, dónde se pierde tiempo y qué reglas de diseño deben respetarse siempre.</p>
+                    </div>
+                </div>
+                <div class="process-item">
+                    <div class="step-num">02</div>
+                    <div>
+                        <h4>Arquitectura de la solución</h4>
+                        <p>Definimos la lógica paramétrica: variables, restricciones y la estructura del sistema antes de escribir una sola línea.</p>
+                    </div>
+                </div>
+                <div class="process-item">
+                    <div class="step-num">03</div>
+                    <div>
+                        <h4>Construcción y prueba</h4>
+                        <p>Desarrollamos el flujo de forma iterativa, con revisiones visuales en cada etapa hasta ajustarlo a tu caso real.</p>
+                    </div>
+                </div>
+                <div class="process-item">
+                    <div class="step-num">04</div>
+                    <div>
+                        <h4>Entrega y acompañamiento</h4>
+                        <p>Documentamos el sistema y te acompañamos en la adopción, para que el equipo lo use con confianza desde el primer día.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 Parametric Flow. Todos los derechos reservados.
+    </div>
+
+</main>
+
+<script src="js/nav.js"></script>
+
+</body>
+
+</html>
