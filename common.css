@@ -123,7 +123,7 @@ body::before{
 }
 
 .logo-icon{
-    width:64px;
+    width:72px;
     height:auto;
 }
 
@@ -137,9 +137,9 @@ body::before{
 
     display:flex;
     gap:8px;
-    font-size:11px;
+    font-size:13px;
     font-weight:700;
-    letter-spacing:3px;
+    letter-spacing:3.2px;
     text-transform:uppercase;
     line-height:1;
 
@@ -156,9 +156,9 @@ body::before{
 
 .sub{
 
-    margin-top:6px;
+    margin-top:7px;
     color:#C8D4EA;
-    font-size:9px;
+    font-size:10px;
     font-weight:600;
     letter-spacing:5px;
     text-transform:uppercase;
@@ -183,7 +183,7 @@ nav a{
     color:#D8E4F7;
     text-decoration:none;
     font-family:'Manrope',sans-serif;
-    font-size:13px;
+    font-size:14px;
     font-weight:500;
     letter-spacing:4px;
     text-transform:uppercase;
@@ -219,9 +219,9 @@ nav a.active::after{
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:12px 20px;
+    padding:13px 22px;
     color:white;
-    font-size:15px;
+    font-size:16px;
     font-weight:500;
     letter-spacing:1px;
     background:none;
