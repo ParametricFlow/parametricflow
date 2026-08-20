@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blog — Parametric Flow</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/common.css">
+
+<style>
+
+.featured-post{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+    border:1px solid rgba(120,180,255,.18);
+    border-radius:20px;
+    padding:36px;
+    background:rgba(15,40,90,.22);
+    margin-bottom:64px;
+}
+
+.featured-visual{
+    height:220px;
+    border-radius:14px;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 25% 25%,rgba(30,217,255,.22),transparent 55%),
+        radial-gradient(circle at 75% 75%,rgba(244,169,74,.14),transparent 55%),
+        linear-gradient(150deg,#0A3578,#061C43);
+    border:1px solid rgba(120,180,255,.14);
+}
+
+.featured-post .post-tag{
+    color:#58D4FF;
+    font-size:10.5px;
+    font-weight:700;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    opacity:.85;
+    margin-bottom:14px;
+    display:block;
+}
+
+.featured-post h2{
+    font-size:clamp(20px,2.6vw,28px);
+    font-weight:700;
+    line-height:1.3;
+    margin-bottom:14px;
+    color:#F4F6FA;
+}
+
+.featured-post p{
+    color:#C8D4EA;
+    font-size:14px;
+    line-height:1.75;
+    opacity:.88;
+    margin-bottom:20px;
+}
+
+.post-meta{
+    display:flex;
+    gap:16px;
+    color:#9FB3D9;
+    font-size:11.5px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    opacity:.75;
+}
+
+.posts-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+    margin-bottom:70px;
+}
+
+.post-card{
+    border:1px solid rgba(120,180,255,.16);
+    border-radius:16px;
+    overflow:hidden;
+    background:rgba(15,40,90,.2);
+    transition:.3s;
+}
+
+.post-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(88,212,255,.4);
+    background:rgba(15,40,90,.32);
+}
+
+.post-thumb{
+    height:130px;
+    background:
+        radial-gradient(circle at 30% 30%,rgba(30,217,255,.16),transparent 60%),
+        linear-gradient(150deg,#0A3578,#061C43);
+    border-bottom:1px solid rgba(120,180,255,.14);
+}
+
+.post-card-body{
+    padding:20px 20px 24px;
+}
+
+.post-card .post-tag{
+    color:#58D4FF;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    opacity:.85;
+    margin-bottom:10px;
+    display:block;
+}
+
+.post-card h3{
+    font-size:14.5px;
+    font-weight:700;
+    line-height:1.4;
+    margin-bottom:10px;
+    color:#F4F6FA;
+}
+
+.post-card p{
+    font-size:13px;
+    color:#C8D4EA;
+    line-height:1.6;
+    opacity:.85;
+    margin-bottom:14px;
+}
+
+.notice-box{
+    border:1px dashed rgba(120,180,255,.3);
+    border-radius:16px;
+    padding:28px 26px;
+    text-align:center;
+    color:#C8D4EA;
+    font-size:13.5px;
+    line-height:1.7;
+    max-width:720px;
+    margin:0 auto 40px;
+    opacity:.9;
+}
+
+.notice-box strong{
+    color:#F4F6FA;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <a class="logo" href="index.html">
+        <img class="logo-icon" src="assets/images/logo.png" alt="Parametric Flow">
+        <div class="logo-text">
+            <span class="brand">
+                <span class="white">PARAMETRIC</span>
+                <span class="blue">FLOW</span>
+            </span>
+            <span class="sub">DESIGN INTELLIGENCE</span>
+        </div>
+    </a>
+
+    <nav>
+        <a href="index.html">INICIO</a>
+        <a href="proyectos.html">PROYECTOS</a>
+        <a href="blog.html" class="active">BLOG</a>
+        <a href="#contacto" class="js-contact-link">CONTACTO</a>
+    </nav>
+
+    <div class="language">
+        🌐 ES / US
+    </div>
+
+</header>
+
+<main class="page-wrap">
+
+    <div class="page-content">
+
+        <a href="#" class="featured-post" style="text-decoration:none;">
+            <div class="featured-visual"></div>
+            <div>
+                <span class="post-tag">Destacado</span>
+                <h2>Por qué automatizar no significa perder control del diseño</h2>
+                <p>Una mirada a cómo estructurar reglas paramétricas que automatizan lo repetitivo sin quitarle criterio al diseñador — con ejemplos de flujos reales en Grasshopper.</p>
+                <div class="post-meta">
+                    <span>Próximamente</span>
+                    <span>Automatización</span>
+                </div>
+            </div>
+        </a>
+
+        <div class="posts-grid">
+
+            <a href="#" class="post-card" style="text-decoration:none;">
+                <div class="post-thumb"></div>
+                <div class="post-card-body">
+                    <span class="post-tag">Modelado paramétrico</span>
+                    <h3>3 señales de que tu proceso de diseño necesita automatización</h3>
+                    <p>Patrones comunes que indican que ha llegado el momento de sistematizar un flujo manual.</p>
+                    <div class="post-meta"><span>Próximamente</span></div>
+                </div>
+            </a>
+
+            <a href="#" class="post-card" style="text-decoration:none;">
+                <div class="post-thumb"></div>
+                <div class="post-card-body">
+                    <span class="post-tag">Arquitectura de soluciones</span>
+                    <h3>Conectar CAD con tus otros sistemas sin duplicar trabajo</h3>
+                    <p>Cómo diseñar el puente de datos entre el modelo y el resto de tu operación.</p>
+                    <div class="post-meta"><span>Próximamente</span></div>
+                </div>
+            </a>
+
+            <a href="#" class="post-card" style="text-decoration:none;">
+                <div class="post-thumb"></div>
+                <div class="post-card-body">
+                    <span class="post-tag">Herramientas</span>
+                    <h3>Grasshopper vs. scripts a medida: cuándo elegir cada uno</h3>
+                    <p>Ventajas y límites de cada enfoque según la complejidad del proyecto.</p>
+                    <div class="post-meta"><span>Próximamente</span></div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="notice-box">
+            <strong>Estamos preparando el primer artículo.</strong> Muy pronto publicaremos contenido real sobre nuestros proyectos y proceso de trabajo.
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2026 Parametric Flow. Todos los derechos reservados.
+    </div>
+
+</main>
+
+<script src="js/contact-modal.js"></script>
+
+</body>
+
+</html>
