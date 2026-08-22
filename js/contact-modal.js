@@ -35,7 +35,7 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrewqldl";
 
                     <div class="field" style="margin-bottom:24px;">
                         <label for="modal-message" style="display:block; color:#a8bcd6; text-transform:uppercase; letter-spacing:0.5px; font-size:13px; font-weight:600; margin-bottom:8px;">Descripción</label>
-                        <textarea id="modal-message" name="message" placeholder="Cuéntanos más sobre tu proyecto" required style="width:100%; box-sizing:border-box; background:#0f2545; border:1px solid #1c3a63; border-radius:6px; color:#ffffff; padding:12px 14px; min-height:120px; resize:vertical;"></textarea>
+                        <textarea id="modal-message" name="message" required style="width:100%; box-sizing:border-box; background:#0f2545; border:1px solid #1c3a63; border-radius:6px; color:#ffffff; padding:12px 14px; min-height:120px; resize:vertical;"></textarea>
                     </div>
 
                     <button type="submit" class="submit-btn" id="submit-btn" style="width:100%; background:#1e6fd9; color:#ffffff; border:none; border-radius:6px; padding:14px; font-weight:700; letter-spacing:0.5px;">Enviar</button>
