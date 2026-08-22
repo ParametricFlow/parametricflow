@@ -38,7 +38,7 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/mrewqldl";
                         <textarea id="modal-message" name="message" required style="width:100%; box-sizing:border-box; background:#0f2545; border:1px solid #1c3a63; border-radius:6px; color:#ffffff; padding:12px 14px; min-height:120px; resize:vertical;"></textarea>
                     </div>
 
-                    <button type="submit" class="submit-btn" id="submit-btn" style="width:100%; background:#1e6fd9; color:#ffffff; border:none; border-radius:6px; padding:14px; font-weight:700; letter-spacing:0.5px;">Enviar mensaje</button>
+                    <button type="submit" class="submit-btn" id="submit-btn" style="width:100%; background:#1e6fd9; color:#ffffff; border:none; border-radius:6px; padding:14px; font-weight:700; letter-spacing:0.5px;">Enviar</button>
 
                     <div class="form-status" id="form-status"></div>
 
