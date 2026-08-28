@@ -32,8 +32,27 @@
         });
 
         // Cierra el panel al elegir un link (incluido "Contacto")
+        function normalizePath(path) {
+            path = path.replace(/\\/g, '/');
+            if (path === '/index.html' || path === 'index.html') return '/';
+            if (path.length > 1) path = path.replace(/\/$/, '');
+            return path || '/';
+        }
+
         mobileNav.querySelectorAll('a').forEach(function (link) {
-            link.addEventListener('click', closeMenu);
+            link.addEventListener('click', function (event) {
+                closeMenu();
+
+                var target = new URL(link.href, window.location.href);
+                var currentPath = normalizePath(window.location.pathname);
+                var targetPath = normalizePath(target.pathname);
+
+                if (target.origin === window.location.origin &&
+                targetPath === currentPath &&
+                !target.hash) {
+                event.preventDefault();
+                }
+            });
         });
 
         // Cierra el panel al tocar fuera de él
